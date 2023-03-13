@@ -37,8 +37,8 @@
       ]
     },
     "/Users/margotmge/Desktop/Solidity/Hardhat-Gambling/contracts/Game.sol": {
-      "lastModificationDate": 1678702909500,
-      "contentHash": "a36b5176c6fdd3bd3769887902f18c85",
+      "lastModificationDate": 1678704300193,
+      "contentHash": "1d6fccd12499d7831017e9d374e26089",
       "sourceName": "contracts/Game.sol",
       "solcConfig": {
         "version": "0.8.7",
