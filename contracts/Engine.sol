@@ -1,8 +1,13 @@
-//SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+// SPDX-License-Identifier: MIT
+
+pragma solidity 0.8.7; 
 
 contract Engine{
-    function bitwiseAnd(uint number_1, uint number_2) public pure returns (uint) {
-        return number_1 & number_2;
+    
+    function bitsoper(uint nb1, uint nb2) pure public returns(uint) {
+        uint result; 
+        //We use bitwise operator "&"
+        result = nb1 & nb2;
+        return(result);
     }
 }

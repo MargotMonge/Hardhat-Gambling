@@ -1,24 +1,34 @@
-//SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
-// Inhherit the Engine function (already compiled)
+// SPDX-License-Identifier: MIT
+
+pragma solidity 0.8.7; 
+
+
 import "./Engine.sol";
-  
-contract Game is Engine {
-    function play(uint userGuess) public view returns (bool) {
-    // Generate two numbers randomly using the function subsequently established
-        //Copy and paste of the function provided in GeeksforGeeks
-        uint random_number_1 = uint(keccak256(abi.encodePacked(block.timestamp))) % 3;
-        uint random_number_2 = uint(keccak256(abi.encodePacked(block.timestamp, random_number_1))) % 3;
 
-    // Call the function from the Engine contract (in my case, the bitwiseAnd) 
-        uint comparison = bitwiseAnd(random_number_1, random_number_2);
+contract Game is Engine{
 
-    // Return a boolean: true = correctly guessed; false = wrong guess.
-    if (comparison == userGuess) {
-        return true;
-    } else {
-        return false;
+    uint randNonce = 0;
+    uint bitsresult;
+
+    //First create the function for random number generation 
+    function randNB(uint _modulus) internal returns(uint){
+    randNonce++; 
+    return uint(keccak256(abi.encodePacked(block.timestamp, msg.sender,randNonce))) % _modulus;
     }
-    }
+
+    //We build the actual game function 
+    function gameResults(uint userInput) public returns(bool result){
+    //Reduce randomness so that nb1 = nb2 = 0 
+    uint nb1 = randNB(1);
+    uint nb2 = randNB(1);
+    //We call function from "operator" contract in Engine file
+    bitsresult = bitsoper(nb1, nb2);
+    if (bitsresult == userInput){
+                result = true;
+            } else {
+                result = false;
+            }      
+    return (result); 
+          
+    }  
 }
-
